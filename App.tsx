@@ -31,14 +31,10 @@ const JULIA_ZOOM = 1.5;
 const CENTER_BOUND = 2.0;
 
 // Create Skia RuntimeEffects once, outside the component
-const mandelbrotEffect = Skia.RuntimeEffect.Make(MANDELBROT_SHADER);
-if (!mandelbrotEffect) {
-  throw new Error('Failed to compile Mandelbrot shader');
-}
-
-const juliaEffect = Skia.RuntimeEffect.Make(JULIA_SHADER);
-if (!juliaEffect) {
-  throw new Error('Failed to compile Julia shader');
+const mandelbrotEffect = Skia.RuntimeEffect.Make(MANDELBROT_SHADER)!;
+const juliaEffect = Skia.RuntimeEffect.Make(JULIA_SHADER)!;
+if (!mandelbrotEffect || !juliaEffect) {
+  throw new Error('Failed to compile shader(s) — check SkSL syntax');
 }
 
 export default function App() {
