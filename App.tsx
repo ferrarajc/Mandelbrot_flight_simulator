@@ -5,6 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppProvider, useApp } from './src/context/AppContext';
 import { usePersistence } from './src/hooks/usePersistence';
 import { useAutopilot } from './src/hooks/useAutopilot';
+import { useMusic } from './src/hooks/useMusic';
 import MandelbrotBg   from './src/views/MandelbrotBg';
 import JuliaBg        from './src/views/JuliaBg';
 import SplitScreen    from './src/views/SplitScreen';
@@ -33,6 +34,7 @@ function Main() {
   const [showCoordDialog, setShowCoordDialog]  = useState(false);
   const [hintActive,      setHintActive]      = useState(false);
   const [appReady,        setAppReady]        = useState(false);
+  const [musicOn,         setMusicOn]         = useState(false);
   const hintDismissed = useRef(false);
 
   useEffect(() => {
@@ -43,6 +45,8 @@ function Main() {
 
   // Any open overlay pauses autopilot
   const anyOverlayOpen = showViewMenu || showColorMenu || showAutopilot || showHelp;
+
+  useMusic(musicOn);
 
   useAutopilot({
     cx, cy, mandZoom,
@@ -108,9 +112,11 @@ function Main() {
         viewMode={viewMode}
         colorScheme={colorScheme}
         autopilotOn={autopilotSpeed > 0}
+        musicOn={musicOn}
         onOpenViewMenu={() => setShowViewMenu(true)}
         onOpenColorMenu={() => setShowColorMenu(true)}
         onOpenAutopilot={() => setShowAutopilot(true)}
+        onToggleMusic={() => setMusicOn(prev => !prev)}
         onEditCoords={() => setShowCoordDialog(true)}
         onOpenHelp={() => setShowHelp(true)}
       />

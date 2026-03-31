@@ -3,16 +3,10 @@ import { Audio, AVPlaybackStatus } from 'expo-av';
 import { Asset } from 'expo-asset';
 
 const TRACK_MODULES = [
-  require('../../music/Th01.mp3'),
-  require('../../music/Th02.mp3'),
-  require('../../music/Th03.mp3'),
-  require('../../music/Th04.mp3'),
-  require('../../music/Th05.mp3'),
-  require('../../music/Th06.mp3'),
-  require('../../music/Th07.mp3'),
-  require('../../music/Th08.mp3'),
-  require('../../music/Th09.mp3'),
-  require('../../music/Th10.mp3'),
+  require('../../music/Th11.mp3'),
+  require('../../music/Th12.mp3'),
+  require('../../music/Th13.mp3'),
+  require('../../music/Th14.mp3'),
 ];
 
 // Pre-download all tracks at module load so the first tap plays immediately

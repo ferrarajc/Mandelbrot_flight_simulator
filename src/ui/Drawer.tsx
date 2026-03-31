@@ -24,9 +24,11 @@ type Props = {
   viewMode: ViewMode;
   colorScheme: ColorScheme;
   autopilotOn: boolean;
+  musicOn: boolean;
   onOpenViewMenu: () => void;
   onOpenColorMenu: () => void;
   onOpenAutopilot: () => void;
+  onToggleMusic: () => void;
   onEditCoords: () => void;
   onOpenHelp: () => void;
 };
@@ -62,8 +64,8 @@ const disc = StyleSheet.create({
 const INITIAL_OFFSET = 400;
 
 export default function Drawer({
-  open, cx, cy, colorScheme, autopilotOn,
-  onOpenViewMenu, onOpenColorMenu, onOpenAutopilot, onEditCoords, onOpenHelp,
+  open, cx, cy, colorScheme, autopilotOn, musicOn,
+  onOpenViewMenu, onOpenColorMenu, onOpenAutopilot, onToggleMusic, onEditCoords, onOpenHelp,
 }: Props) {
   const insets   = useSafeAreaInsets();
   const anim     = useRef(new Animated.Value(INITIAL_OFFSET)).current;
@@ -122,6 +124,18 @@ export default function Drawer({
             name="airplane-outline"
             size={26}
             color={autopilotOn ? '#000' : '#fff'}
+          />
+        </Pressable>
+
+        <Pressable
+          style={[styles.btn, musicOn && styles.btnActive]}
+          onPress={onToggleMusic}
+          hitSlop={8}
+        >
+          <Ionicons
+            name="musical-notes-outline"
+            size={26}
+            color={musicOn ? '#000' : '#fff'}
           />
         </Pressable>
 
